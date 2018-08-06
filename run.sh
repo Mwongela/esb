@@ -5,6 +5,7 @@ DIR=~/esb
 USER=ubuntu
 GROUP=ubuntu
 WORKERS=3
+BIND=unix:/home/ubuntu/esb/run/gunicorn.sock
 DJANGO_SETTINGS_MODULE=es_backend.settings
 DJANGO_WSGI_MODULE=es_backend.wsgi
 LOG_LEVEL=error
@@ -20,5 +21,6 @@ exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --workers $WORKERS \
   --user=$USER \
   --group=$GROUP \
+  --bind=$BIND \
   --log-level=$LOG_LEVEL \
   --log-file=-
