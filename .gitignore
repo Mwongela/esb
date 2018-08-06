@@ -1,0 +1,10 @@
+db.sqlite3
+local_settings.py
+.DS_Store
+__pycache__
+*.pyc
+staticfiles
+env
+*.dump
+venv
+.idea
