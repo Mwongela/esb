@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+from django.views.generic import RedirectView
+
 import api.urls as api_urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include((api_urls, 'api'), namespace='api'))
+  path('admin/', admin.site.urls),
+  path('api/', include((api_urls, 'api'), namespace='api')),
+  path('', RedirectView.as_view(url='/admin'))
 ] + staticfiles_urlpatterns()
