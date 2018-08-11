@@ -8,3 +8,5 @@ env
 *.dump
 venv
 .idea
+
+migrations

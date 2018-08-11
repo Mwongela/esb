@@ -11,7 +11,7 @@ class RegistrationAdmin(admin.ModelAdmin):
 
 
 class PageStatAdmin(admin.ModelAdmin):
-    list_display = ['registration', 'timestamp', 'timeSpent', 'previousPage', 'pageName', 'pageOrder', 'isInputPresent']
+    list_display = ['registration', 'timeStamp', 'timeSpent', 'previousPage', 'pageName', 'pageOrder', 'isInputPresent']
 
 
 class InputStatAdmin(admin.ModelAdmin):

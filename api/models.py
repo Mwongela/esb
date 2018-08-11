@@ -1,9 +1,16 @@
+import uuid
+
+import django
 from django_extensions.db.models import TimeStampedModel, models
 
 
 class Registration(TimeStampedModel):
-    phoneNumber = models.CharField(max_length=256, unique=True)
+    phoneNumber = models.CharField(max_length=256)
     deviceBuild = models.CharField(max_length=256)
+    lastSeen = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        unique_together = (("phoneNumber", "deviceBuild"),)
 
     def __str__(self):
         return "{}-{}".format(self.phoneNumber, self.deviceBuild)
@@ -11,7 +18,7 @@ class Registration(TimeStampedModel):
 
 class PageStat(TimeStampedModel):
     registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
-    timestamp = models.BigIntegerField(null=False, blank=False)
+    timeStamp = models.BigIntegerField(null=False, blank=False)
     timeSpent = models.BigIntegerField(null=False, blank=False)
     previousPage = models.CharField(max_length=256)
     pageName = models.CharField(max_length=256)
@@ -40,6 +47,7 @@ class InputStat(TimeStampedModel):
 
 
 class GroupSaving(TimeStampedModel):
+    secondaryId = models.UUIDField(unique=True, max_length=256)
     month = models.CharField(max_length=256)
     groupType = models.CharField(max_length=256)
     goalType = models.CharField(max_length=256)
